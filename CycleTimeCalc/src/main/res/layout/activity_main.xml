@@ -19,26 +19,29 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Start Date"
-                android:id="@+id/textView"
-                android:layout_gravity="center_horizontal|top"/>
+                android:id="@+id/textView"/>
 
 
         <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="fill_parent"
-                android:layout_gravity="left|center_vertical">
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:orientation="horizontal">
 
             <DatePicker
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/startDatePicker"
-                    android:layout_gravity="left|center_vertical"
-                    android:spinnersShown="false"/>
+                    android:spinnersShown="true"
+                    android:calendarViewShown="false"/>
 
             <Spinner
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/startHourSpinner"/>
+                    android:text="Hour"
+                    android:id="@+id/startHourSpinner"
+                    android:layout_marginLeft="20dp"/>
+
         </LinearLayout>
 
 
@@ -49,6 +52,45 @@
                 android:text="End Date"
                 android:id="@+id/textView2"
                 android:layout_gravity="left|center_vertical"/>
+
+        <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left|center_vertical"
+                android:orientation="horizontal">
+
+
+
+
+            <DatePicker
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/endDatePicker"
+                    android:spinnersShown="true"
+                    android:calendarViewShown="false"/>
+
+            <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Hour"
+                    android:id="@+id/endHourSpinner"
+                    android:layout_marginLeft="20dp"/>
+
+
+            <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Calculate"
+                    android:id="@+id/calculateButton"
+                    android:layout_gravity="left|center_vertical"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceLarge"
+                    android:id="@+id/cycleTimeTextView"
+                    android:layout_gravity="left|center_vertical"/>
+        </LinearLayout>
 
 
 

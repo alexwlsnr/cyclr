@@ -1,12 +1,21 @@
 package com.alexwlsnr.cycletimecalc;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.app.Activity;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 
-public class MainActivity extends Activity {
+import java.text.DateFormat;
+import java.util.Date;
+
+public class MainActivity extends FragmentActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,7 +28,7 @@ public class MainActivity extends Activity {
     protected void onStart()
     {
         super.onStart();
-        configureHourSpinners();
+        configureSpinners();
     }
 
     @Override
@@ -30,16 +39,26 @@ public class MainActivity extends Activity {
     }
 
 
-    private void configureHourSpinners()
+    private void configureSpinners()
     {
-        Spinner spinner = (Spinner) findViewById(R.id.startHourSpinner);
+        Spinner startHourSpinner = (Spinner) findViewById(R.id.startHourSpinner);
     // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.hours_array, android.R.layout.simple_spinner_item);
     // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        startHourSpinner.setAdapter(adapter);
+
+
+
+        Spinner endHourSpinner = (Spinner) findViewById(R.id.endHourSpinner);
+        // Apply the adapter to the spinner
+        endHourSpinner.setAdapter(adapter);
+
     }
+
+
+
     
 }
