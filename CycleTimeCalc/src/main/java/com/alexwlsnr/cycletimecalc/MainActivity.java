@@ -18,9 +18,11 @@ import org.joda.time.Days;
 import org.joda.time.Hours;
 
 import java.text.DateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 public class MainActivity extends FragmentActivity {
 
@@ -28,6 +30,8 @@ public class MainActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        System.setProperty("org.joda.time.DateTimeZone.Provider",
+                "com.alexwlsnr.cycletimecalc.FastDateTimeZoneProvider");
         setContentView(R.layout.activity_main);
     }
 
@@ -49,6 +53,9 @@ public class MainActivity extends FragmentActivity {
 
     private void configureSpinners()
     {
+        int currentHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        String[] hoursArray = getResources().getStringArray(R.array.hours_array);
+
         Spinner startHourSpinner = (Spinner) findViewById(R.id.startHourSpinner);
     // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -58,11 +65,32 @@ public class MainActivity extends FragmentActivity {
     // Apply the adapter to the spinner
         startHourSpinner.setAdapter(adapter);
 
+        int defaultIndex = Arrays.asList(hoursArray).indexOf(Integer.toString(currentHour));
+
+        if(defaultIndex == -1)
+        {
+            if(currentHour > Integer.parseInt(hoursArray[hoursArray.length-1]))
+            {
+
+                defaultIndex = hoursArray.length-1;
+            }
+            else
+            {
+                defaultIndex = 0;
+            }
+        }
+
+
+
+        startHourSpinner.setSelection(defaultIndex);
+
 
 
         Spinner endHourSpinner = (Spinner) findViewById(R.id.endHourSpinner);
         // Apply the adapter to the spinner
         endHourSpinner.setAdapter(adapter);
+        endHourSpinner.setSelection(adapter.getPosition(Integer.toString(currentHour)));
+        endHourSpinner.setSelection(defaultIndex);
 
     }
 
