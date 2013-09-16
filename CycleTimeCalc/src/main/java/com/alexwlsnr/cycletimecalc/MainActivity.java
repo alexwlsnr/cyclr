@@ -1,28 +1,20 @@
 package com.alexwlsnr.cycletimecalc;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeConstants;
-import org.joda.time.Days;
-import org.joda.time.Hours;
 
-import java.text.DateFormat;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
+
+import static com.alexwlsnr.cycletimecalc.CycleTimeUtils.getCycleTime;
 
 public class MainActivity extends FragmentActivity {
 
@@ -93,6 +85,16 @@ public class MainActivity extends FragmentActivity {
         endHourSpinner.setSelection(defaultIndex);
 
     }
+    public void resetUi(View v)
+    {
+        configureSpinners();
+        Calendar currentDate = Calendar.getInstance();
+        DatePicker startDatePicker = (DatePicker) findViewById(R.id.startDatePicker);
+        DatePicker endDatePicker = (DatePicker) findViewById(R.id.endDatePicker);
+        startDatePicker.getCalendarView().setDate(currentDate.getTimeInMillis());
+        endDatePicker.getCalendarView().setDate(currentDate.getTimeInMillis());
+    }
+
 
     public void calculate(View v)
     {
@@ -107,43 +109,10 @@ public class MainActivity extends FragmentActivity {
         DateTime endDate = new DateTime(endDatePicker.getYear(), endDatePicker.getMonth(), endDatePicker.getDayOfMonth(), endHour, 0); //GregorianCalendar(endDatePicker.getYear(), endDatePicker.getMonth(), endDatePicker.getDayOfMonth(), endHour, 0);
 
 
-        int cycleTime = getWorkingHoursBetweenTwoDates(startDate, endDate);
+        int cycleTime = getCycleTime(startDate, endDate);
         TextView resultsArea = (TextView) findViewById(R.id.cycleTimeTextView);
 
         resultsArea.setText(Integer.toString(cycleTime));
     }
-
-
-
-    private static int getWorkingHoursBetweenTwoDates(DateTime startDate, DateTime endDate) {
-
-        int workDays = 0;
-        int count = 0;
-        while(Days.daysBetween(startDate.plusDays(count), endDate).isGreaterThan(Days.ZERO))
-        {
-
-            if(!isWeekend(startDate.plusDays(count++)))
-            {
-                workDays++;
-            }
-        }
-
-
-        int workHours = workDays * 8;
-        workHours += Hours.hoursBetween(startDate.plusDays(count), endDate).getHours();
-
-
-
-
-        return workHours;
-    }
-
-    private static boolean isWeekend(DateTime dateTime)
-    {
-        return (DateTimeConstants.SATURDAY == dateTime.dayOfWeek().get() || DateTimeConstants.SUNDAY == dateTime.dayOfWeek().get());
-    }
-
-
-
     
 }
