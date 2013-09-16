@@ -34,10 +34,11 @@ public class CycleTimeUtils {
 
 
             }
-            if(!isWeekend(startDate.plusDays(count++)))
+            if(!isWeekend(startDate.plusDays(count)) && !isNonworkingDay)
             {
                 workDays++;
             }
+            count++;
         }
 
 
