@@ -127,7 +127,8 @@ public class MainActivity extends FragmentActivity {
         else
         {
             Calendar current = Calendar.getInstance();
-            endDate = new DateTime(current.YEAR, current.MONTH + 1, current.DAY_OF_MONTH, current.HOUR, 0);
+            endDate = new DateTime(current.get(Calendar.YEAR), current.get(Calendar.MONTH) + 1,
+                    current.get(Calendar.DAY_OF_MONTH), current.get(Calendar.HOUR_OF_DAY), 0);
         }
 
 
