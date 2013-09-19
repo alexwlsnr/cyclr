@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CycleTimeCalc/CycleTimeCalc.iml" filepath="$PROJECT_DIR$/CycleTimeCalc/CycleTimeCalc.iml" />
       <module fileurl="file://$PROJECT_DIR$/CycleTimeCalcProject.iml" filepath="$PROJECT_DIR$/CycleTimeCalcProject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cyclr.iml" filepath="$PROJECT_DIR$/cyclr.iml" />
     </modules>
   </component>
 </project>

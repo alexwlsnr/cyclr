@@ -59,15 +59,29 @@
                     android:layout_below="@id/startHourTextView"
                     />
 
+        <ToggleButton
+            android:id="@+id/EndDateEnabledtogglebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/startDatePicker"
+            android:textOn="End Date Auto"
+            android:textOff="End Date Manual"
+            android:onClick="onEndDateEnabledToggleClicked"/>
 
 
+        <RelativeLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_below="@id/EndDateEnabledtogglebutton"
+            android:visibility="invisible"
+            android:id="@+id/endDateSection">
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="End Date"
                 android:id="@+id/endDateTextView"
-                android:layout_below="@id/startDatePicker"
+
                 android:layout_gravity="left|center_vertical"/>
 
 
@@ -103,6 +117,7 @@
                     android:layout_alignParentRight="true"
                     android:layout_gravity="center_horizontal"
                     />
+        </RelativeLayout>
 
 
             <Button
@@ -111,7 +126,7 @@
                     android:text="Calculate"
                     android:id="@+id/calculateButton"
                     android:onClick="calculate"
-                    android:layout_below="@id/endDatePicker"
+                    android:layout_below="@id/endDateSection"
                     android:layout_gravity="left|center_vertical"/>
 
             <Button
@@ -121,7 +136,7 @@
                 android:id="@+id/resetButton"
                 android:onClick="resetUi"
                 android:layout_gravity="right|center_vertical"
-                android:layout_below="@id/endDatePicker"
+                android:layout_below="@id/endDateSection"
                 android:layout_alignParentRight="true"/>
 
         <TextView
@@ -135,4 +150,4 @@
 
     </RelativeLayout>
 
-</ScrollView><!-- From: file:/home/alex/AndroidStudioProjects/CycleTimeCalcProject/CycleTimeCalc/src/main/res/layout/activity_main.xml -->
+</ScrollView><!-- From: file:/C:/Dev/android/cyclr/CycleTimeCalc/src/main/res/layout/activity_main.xml -->

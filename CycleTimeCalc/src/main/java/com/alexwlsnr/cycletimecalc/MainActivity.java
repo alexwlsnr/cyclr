@@ -8,8 +8,10 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
@@ -25,6 +27,7 @@ public class MainActivity extends FragmentActivity {
 
     private int startHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
     private int endHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+    private Boolean calculateEndDate = true;
 
 
     @Override
@@ -169,8 +172,17 @@ public class MainActivity extends FragmentActivity {
             }
             if(resultCode == RESULT_CANCELED){
                 //handle cancel
+
             }
         }
     }
-    
+
+    public void onEndDateEnabledToggleClicked(View view) {
+
+        boolean on = ((ToggleButton) view).isChecked();
+        RelativeLayout tl = (RelativeLayout)findViewById(R.id.endDateSection);
+        tl.setVisibility(on ? View.VISIBLE: View.INVISIBLE);
+        calculateEndDate = !on;
+
+    }
 }
