@@ -3,6 +3,7 @@ package com.alexwlsnr.cycletimecalc;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.View;
@@ -17,9 +18,7 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 
 import static com.alexwlsnr.cycletimecalc.CycleTimeUtils.getCycleTime;
 
@@ -27,7 +26,7 @@ public class MainActivity extends FragmentActivity {
 
     private int startHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
     private int endHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-    private Boolean calculateEndDate = true;
+    private Boolean calculateEndDate = false;
 
 
     @Override
@@ -46,12 +45,7 @@ public class MainActivity extends FragmentActivity {
         configureSpinners();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
+
 
 
     private void configureSpinners()
@@ -122,11 +116,19 @@ public class MainActivity extends FragmentActivity {
         int startHour = Integer.parseInt((String)startHourSpinner.getSelectedItem());
         DatePicker startDatePicker = (DatePicker) findViewById(R.id.startDatePicker);
         DateTime startDate = new DateTime(startDatePicker.getYear(), startDatePicker.getMonth() + 1, startDatePicker.getDayOfMonth(), startHour, 0);
-
-        Spinner endHourSpinner = (Spinner) findViewById(R.id.endHourSpinner);
-        int endHour = Integer.parseInt((String)endHourSpinner.getSelectedItem());
-        DatePicker endDatePicker = (DatePicker) findViewById(R.id.endDatePicker);
-        DateTime endDate = new DateTime(endDatePicker.getYear(), endDatePicker.getMonth() + 1, endDatePicker.getDayOfMonth(), endHour, 0); //GregorianCalendar(endDatePicker.getYear(), endDatePicker.getMonth(), endDatePicker.getDayOfMonth(), endHour, 0);
+        DateTime endDate;
+        if (calculateEndDate)
+        {
+            Spinner endHourSpinner = (Spinner) findViewById(R.id.endHourSpinner);
+            int endHour = Integer.parseInt((String)endHourSpinner.getSelectedItem());
+            DatePicker endDatePicker = (DatePicker) findViewById(R.id.endDatePicker);
+            endDate = new DateTime(endDatePicker.getYear(), endDatePicker.getMonth() + 1, endDatePicker.getDayOfMonth(), endHour, 0);
+        }
+        else
+        {
+            Calendar current = Calendar.getInstance();
+            endDate = new DateTime(current.YEAR, current.MONTH + 1, current.DAY_OF_MONTH, current.HOUR, 0);
+        }
 
 
         int cycleTime = getCycleTime(startDate, endDate);
@@ -181,8 +183,10 @@ public class MainActivity extends FragmentActivity {
 
         boolean on = ((ToggleButton) view).isChecked();
         RelativeLayout tl = (RelativeLayout)findViewById(R.id.endDateSection);
-        tl.setVisibility(on ? View.VISIBLE: View.INVISIBLE);
+        tl.setVisibility(on ? View.VISIBLE: View.GONE);
         calculateEndDate = !on;
 
     }
+
+
 }

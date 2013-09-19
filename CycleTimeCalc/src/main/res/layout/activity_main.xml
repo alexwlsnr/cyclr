@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
@@ -15,7 +16,6 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Start Date"
                 android:id="@+id/startDateTextView"/>
         <Button
@@ -42,7 +42,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
                     android:layout_marginRight="4dp"
                     android:layout_marginTop="32dp"
                     android:text="Hour"
@@ -64,8 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/startDatePicker"
-            android:textOn="End Date Auto"
-            android:textOff="End Date Manual"
+            android:textOn="End Date Manual"
+            android:textOff="End Date Auto"
             android:onClick="onEndDateEnabledToggleClicked"/>
 
 
@@ -73,12 +72,11 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_below="@id/EndDateEnabledtogglebutton"
-            android:visibility="invisible"
+            android:visibility="gone"
             android:id="@+id/endDateSection">
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="End Date"
                 android:id="@+id/endDateTextView"
 
@@ -102,7 +100,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginRight="4dp"
                         android:layout_marginTop="32dp"
-                        android:textAppearance="?android:attr/textAppearanceMedium"
                         android:layout_gravity="center_horizontal"
                         android:layout_alignParentRight="true"
                         android:layout_below="@id/endDateTextView"
@@ -142,7 +139,6 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
                 android:id="@+id/cycleTimeTextView"
                 android:layout_below="@id/calculateButton"
                 android:layout_gravity="left|center_vertical"
